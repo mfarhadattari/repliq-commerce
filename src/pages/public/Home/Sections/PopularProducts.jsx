@@ -6,6 +6,7 @@ import Loaders from "../../../../components/common/Loaders";
 import SectionTitle from "../../../../components/common/SectionTitle";
 
 const PopularProducts = () => {
+  // loading data
   const { data: products = [], isLoading: isProductLoading } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
