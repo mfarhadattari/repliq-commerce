@@ -9,7 +9,7 @@ const ProductShowCard = ({ productInfo }) => {
       data-aos-duration="1500"
       className="card w-full border p-5 rounded-3xl rounded-bl-none  hover:shadow-2xl"
     >
-      <Link to={`/shop/${_id}`}>
+      <Link to={`/products/${_id}`}>
         <figure>
           <img
             className="w-[300px] h-[200px] rounded-md"
