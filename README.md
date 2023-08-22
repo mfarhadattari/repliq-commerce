@@ -1,4 +1,4 @@
-# Reqliq Commerce
+# REPLIQ COMMERCE
 
 ## Link :
 
