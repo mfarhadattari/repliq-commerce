@@ -18,3 +18,4 @@
 - AOS
 - React Fast Marquee
 - React Hot Toast
+- React Hook From

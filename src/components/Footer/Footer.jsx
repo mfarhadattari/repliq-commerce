@@ -65,7 +65,7 @@ const Footer = () => {
         {/* --------- social -------------- */}
         <div>
           <h2 className="text-xl">Follow us</h2>
-          <div className="text-3xl mt-5 flex gap-5">
+          <div className="text-3xl mt-5 flex gap-5 justify-center md:justify-start">
             <p>
               <a
                 href="https://www.facebook.com/"
