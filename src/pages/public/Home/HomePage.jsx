@@ -1,11 +1,12 @@
 import PageTitle from "../../../components/common/PageTitle";
+import Banner from "./Sections/Banner";
 
 const HomePage = () => {
   return (
     <div>
       <PageTitle />
 
-      <h1>Home Page</h1>
+      <Banner />
     </div>
   );
 };
