@@ -15,3 +15,4 @@
 - Moment JS
 - React Query
 - Axios
+- AOS
