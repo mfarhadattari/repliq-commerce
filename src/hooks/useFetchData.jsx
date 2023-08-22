@@ -1,13 +1,12 @@
-import axios from "axios";
 import { useQuery } from "react-query";
+import useServer from "./useServer";
 
 const useFetchData = (path, initial, queryKey) => {
+  const { serverReq } = useServer();
   const { data = initial, isLoading } = useQuery({
     queryKey: queryKey ? [...queryKey] : [],
     queryFn: async () => {
-      const res = await axios.get(
-        `https://shanto-mart-server.vercel.app${path}`
-      );
+      const res = await serverReq.get(path);
       return await res.data;
     },
   });

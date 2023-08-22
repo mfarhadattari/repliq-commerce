@@ -7,7 +7,7 @@ import useFetchData from "../../../../hooks/useFetchData";
 const PopularProducts = () => {
   // load data
   const { data: products, isLoading: isProductLoading } = useFetchData(
-    "/new-products",
+    "/popular-products",
     []
   );
 
