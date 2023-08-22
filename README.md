@@ -7,7 +7,9 @@
 ## Technologies/Packages:
 
 - React (Vite)
-- React Router DOM
-- React Helmet Async
 - Tailwind CSS
 - Daisy UI
+- React Router DOM
+- React Helmet Async
+- React Icons
+- Moment JS
