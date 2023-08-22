@@ -17,3 +17,4 @@
 - Axios
 - AOS
 - React Fast Marquee
+- React Hot Toast

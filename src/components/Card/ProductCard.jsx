@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import comingSoon from "../Message/comingSoon";
 
 const ProductCard = ({ productInfo }) => {
   const { _id, image, name, price } = productInfo;
@@ -22,7 +23,9 @@ const ProductCard = ({ productInfo }) => {
           <p className="text-xl font-semibold">$ {price}</p>
         </div>
       </Link>
-      <button className="btn btn-outline w-full mt-2">Add To Cart</button>
+      <button className="btn btn-outline w-full mt-2" onClick={comingSoon}>
+        Add To Cart
+      </button>
     </div>
   );
 };
