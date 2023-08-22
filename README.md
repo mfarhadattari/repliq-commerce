@@ -16,3 +16,4 @@
 - React Query
 - Axios
 - AOS
+- React Fast Marquee

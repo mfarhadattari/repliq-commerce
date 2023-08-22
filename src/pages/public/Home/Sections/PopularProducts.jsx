@@ -1,21 +1,15 @@
-import axios from "axios";
-import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import ProductShowCard from "../../../../components/Card/ProductShowCard";
 import Loaders from "../../../../components/common/Loaders";
 import SectionTitle from "../../../../components/common/SectionTitle";
+import useFetchData from "../../../../hooks/useFetchData";
 
 const PopularProducts = () => {
-  // loading data
-  const { data: products = [], isLoading: isProductLoading } = useQuery({
-    queryKey: ["products"],
-    queryFn: async () => {
-      const res = await axios.get(
-        "https://shanto-mart-server.vercel.app/new-products"
-      );
-      return res.data;
-    },
-  });
+  // load data
+  const { data: products, isLoading: isProductLoading } = useFetchData(
+    "/new-products",
+    []
+  );
 
   return (
     <section className="my-20">
