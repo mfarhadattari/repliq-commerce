@@ -7,13 +7,14 @@ import errorAlert from "../../components/Message/errorAlert";
 import successAlert from "../../components/Message/successAlert";
 import PageTitle from "../../components/common/PageTitle";
 import SectionTitle from "../../components/common/SectionTitle";
+import useAuth from "../../hooks/useAuth";
 import useServer from "../../hooks/useServer";
 
 const LoginPage = () => {
   const [passwordShow, setPasswordShow] = useState(false);
   const { serverReq } = useServer();
+  const { setAuthUser } = useAuth();
   const navigate = useNavigate();
-
   const location = useLocation();
   const redirect = location?.state?.from || "/";
 
@@ -33,6 +34,7 @@ const LoginPage = () => {
 
     serverReq.post("/auth/login", userInfo).then(({ data }) => {
       if (data.token) {
+        setAuthUser(data.user);
         localStorage.setItem("RepliqCommerceToken", data.token);
         successAlert("Successfully Login");
         reset();

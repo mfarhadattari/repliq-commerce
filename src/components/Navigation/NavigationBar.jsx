@@ -1,5 +1,6 @@
 import { FaBars, FaUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 import NavLink from "./NavLink";
 
 const navOptions = [
@@ -22,7 +23,8 @@ const navOptions = [
 ];
 
 const NavigationBar = () => {
-  const user = true;
+  const { authUser } = useAuth();
+
   return (
     <nav className="navbar p-5 md:px-20 bg-slate-950 text-white items-center sticky top-0 z-50">
       <div className="navbar-start">
@@ -58,14 +60,14 @@ const NavigationBar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        {!user && (
+        {!authUser && (
           <Link to="/login">
             <button className="btn btn-sm mt-3 w-fit">Login</button>
           </Link>
         )}
 
         {/* ----------------- Avatar ---------- */}
-        {user && (
+        {authUser && (
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
