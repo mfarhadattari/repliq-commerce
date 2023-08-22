@@ -1,21 +1,48 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ErrorMessage from "../../components/Message/ErrorMessage";
+import errorAlert from "../../components/Message/errorAlert";
+import successAlert from "../../components/Message/successAlert";
 import PageTitle from "../../components/common/PageTitle";
 import SectionTitle from "../../components/common/SectionTitle";
+import useServer from "../../hooks/useServer";
 
 const RegisterPage = () => {
   const [passwordShow, setPasswordShow] = useState(false);
+  const { serverReq } = useServer();
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
   const handelRegister = (data) => {
-    console.log(data);
+    const { userName, userPhone, avatar, password } = data;
+
+    const userInfo = {
+      userName,
+      avatar,
+      password,
+      userPhone: `+880${userPhone}`,
+    };
+
+    serverReq.post("/auth/create-account", userInfo).then(({ data }) => {
+      if (data.alreadyAccount) {
+        return errorAlert("Phone number is already used!");
+      }
+      if (data.insertedId) {
+        successAlert("Successfully register!!");
+        reset();
+        return navigate("/login");
+      } else {
+        errorAlert("Something is wrong!");
+      }
+    });
   };
 
   return (
@@ -35,9 +62,9 @@ const RegisterPage = () => {
                   type="text"
                   placeholder="Name"
                   className="input input-bordered"
-                  {...register("displayName", { required: true })}
+                  {...register("userName", { required: true })}
                 />
-                {errors.displayName?.type === "required" && (
+                {errors.userName?.type === "required" && (
                   <ErrorMessage message="Name is required" />
                 )}
               </div>
@@ -51,7 +78,7 @@ const RegisterPage = () => {
                     type="tel"
                     placeholder="Phone Number"
                     className="input input-bordered ps-28 w-full"
-                    {...register("phoneNumber", {
+                    {...register("userPhone", {
                       required: true,
                       pattern: /^\d+$/,
                       maxLength: 10,
@@ -62,14 +89,14 @@ const RegisterPage = () => {
                     (BD) +880
                   </p>
                 </div>
-                {errors.phoneNumber?.type == "required" && (
+                {errors.userPhone?.type == "required" && (
                   <ErrorMessage message="Phone number is required" />
                 )}
-                {errors.phoneNumber?.type == "pattern" && (
+                {errors.userPhone?.type == "pattern" && (
                   <ErrorMessage message="Phone number is must number" />
                 )}
-                {(errors.phoneNumber?.type == "minLength" ||
-                  errors.phoneNumber?.type == "maxLength") && (
+                {(errors.userPhone?.type == "minLength" ||
+                  errors.userPhone?.type == "maxLength") && (
                   <ErrorMessage message="Phone number must 10 number" />
                 )}
               </div>
@@ -85,9 +112,9 @@ const RegisterPage = () => {
                   type="url"
                   className="input input-bordered w-full"
                   placeholder="Photo URL"
-                  {...register("photoURL", { required: true })}
+                  {...register("avatar", { required: true })}
                 />
-                {errors.photoURL?.type == "required" && (
+                {errors.avatar?.type == "required" && (
                   <ErrorMessage message="Photo URL is required" />
                 )}
               </div>
