@@ -13,3 +13,5 @@
 - React Helmet Async
 - React Icons
 - Moment JS
+- React Query
+- Axios

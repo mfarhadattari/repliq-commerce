@@ -7,7 +7,9 @@ const Main = () => {
     <div className="min-h-screen flex flex-col justify-between font-primary">
       <div>
         <NavigationBar />
-        <Outlet />
+        <div className="max-w-7xl mx-auto">
+          <Outlet />
+        </div>
       </div>
       <Footer />
     </div>
