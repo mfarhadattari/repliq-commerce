@@ -23,7 +23,7 @@ const navOptions = [
 ];
 
 const NavigationBar = () => {
-  const { authUser } = useAuth();
+  const { authUser, logout } = useAuth();
 
   return (
     <nav className="navbar p-5 md:px-20 bg-slate-950 text-white items-center sticky top-0 z-50">
@@ -82,7 +82,9 @@ const NavigationBar = () => {
             >
               <NavLink to="/profile">Profile</NavLink>
               <NavLink to="/orders">Orders</NavLink>
-              <button className="btn btn-sm mt-3 w-fit">Log Out</button>
+              <button className="btn btn-sm mt-3 w-fit" onClick={logout}>
+                Log Out
+              </button>
             </ul>
           </div>
         )}
