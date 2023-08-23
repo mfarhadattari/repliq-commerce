@@ -4,7 +4,7 @@ import NavigationBar from "../components/Navigation/NavigationBar";
 
 const Main = () => {
   return (
-    <div className="min-h-screen flex flex-col justify-between font-primary">
+    <div className="min-h-screen flex flex-col justify-between font-primary font-medium">
       <div>
         <NavigationBar />
         <div className="max-w-7xl mx-auto">
