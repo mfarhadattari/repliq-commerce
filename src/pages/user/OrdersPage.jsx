@@ -15,7 +15,6 @@ const OrdersPage = () => {
     [authUser]
   );
 
-  console.log(orders);
   return (
     <main className="my-10">
       <PageTitle title="Orders" />
