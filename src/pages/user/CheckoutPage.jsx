@@ -1,13 +1,19 @@
+import { useNavigate } from "react-router-dom";
+import successAlert from "../../components/Message/successAlert";
 import Loaders from "../../components/common/Loaders";
 import PageTitle from "../../components/common/PageTitle";
 import SectionTitle from "../../components/common/SectionTitle";
 import useAuth from "../../hooks/useAuth";
 import useFetchData from "../../hooks/useFetchData";
+import useServer from "../../hooks/useServer";
 import generateDateTime from "../../utils/generateDateTime";
 import generateTransitionId from "../../utils/generateTransitionId";
 
 const CheckoutPage = () => {
   const { authUser } = useAuth();
+  const { serverReq } = useServer();
+
+  const navigate = useNavigate();
 
   // load cart data
   const { data: carts, isLoading: isCartLoading } = useFetchData(
@@ -21,7 +27,7 @@ const CheckoutPage = () => {
     const form = e.target;
     const userName = form.userName.value;
     const userPhone = form.userPhone.value;
-    const amount = form.amount.value;
+    const amount = parseInt(form.amount.value);
     const transactionID = form.transactionID.value;
     const city = form.city.value;
     const paymentTime = generateDateTime();
@@ -44,7 +50,13 @@ const CheckoutPage = () => {
       city,
       products,
     };
-    console.log(orderInfo);
+
+    serverReq.post("/checkout", orderInfo).then(({ data }) => {
+      if (data.deletedCount > 0) {
+        successAlert("Order placed successfully!");
+        navigate("/");
+      }
+    });
   };
 
   return (
