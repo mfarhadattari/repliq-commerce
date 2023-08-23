@@ -1,19 +1,33 @@
 import { FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import comingSoon from "../../components/Message/comingSoon";
+import successAlert from "../../components/Message/successAlert";
 import Loaders from "../../components/common/Loaders";
 import PageTitle from "../../components/common/PageTitle";
 import SectionTitle from "../../components/common/SectionTitle";
 import useAuth from "../../hooks/useAuth";
 import useFetchData from "../../hooks/useFetchData";
+import useServer from "../../hooks/useServer";
 
 const CartsPage = () => {
   const { authUser } = useAuth();
-  const { data: carts, isLoading: isCartLoading } = useFetchData(
-    `/my-cart?userPhone=${authUser?.userPhone}`,
-    [],
-    [authUser]
-  );
+  const { serverReq } = useServer();
+
+  // load cart data
+  const {
+    data: carts,
+    isLoading: isCartLoading,
+    refetch: cartsRefetch,
+  } = useFetchData(`/my-cart?userPhone=${authUser?.userPhone}`, [], [authUser]);
+
+  // cart item delete handler
+  const handleDelete = (id) => {
+    serverReq.delete(`/delete-cart/${id}`).then((res) => {
+      if (res.data.deletedCount > 0) {
+        successAlert("Remove Successfully!");
+        cartsRefetch();
+      }
+    });
+  };
 
   return (
     <main className="my-10">
@@ -65,7 +79,10 @@ const CartsPage = () => {
                         </div>
                       </td>
                       <th>
-                        <button className="btn btn-circle" onClick={comingSoon}>
+                        <button
+                          className="btn btn-circle"
+                          onClick={() => handleDelete(item._id)}
+                        >
                           <FaTrashAlt />
                         </button>
                       </th>
