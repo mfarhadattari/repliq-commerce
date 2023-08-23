@@ -12,6 +12,7 @@ import CartsPage from "../pages/user/CartsPage";
 import CheckoutPage from "../pages/user/CheckoutPage";
 import OrdersPage from "../pages/user/OrdersPage";
 import UserHomePage from "../pages/user/UserHomePage";
+import PrivateRouter from "./PrivateRouter";
 
 const routers = createBrowserRouter([
   //---------------- Main Route -----------
@@ -43,27 +44,47 @@ const routers = createBrowserRouter([
       },
       {
         path: "/profile",
-        element: <ProfilePage />,
+        element: (
+          <PrivateRouter>
+            <ProfilePage />
+          </PrivateRouter>
+        ),
       },
       //   USER ROUTE
       {
         path: "/carts",
-        element: <CartsPage />,
+        element: (
+          <PrivateRouter>
+            <CartsPage />
+          </PrivateRouter>
+        ),
       },
       {
         path: "/checkout",
-        element: <CheckoutPage />,
+        element: (
+          <PrivateRouter>
+            <CheckoutPage />
+          </PrivateRouter>
+        ),
       },
       {
         path: "/orders",
-        element: <OrdersPage />,
+        element: (
+          <PrivateRouter>
+            <OrdersPage />
+          </PrivateRouter>
+        ),
       },
     ],
   },
   //----------   Dashboard Route ------------
   {
     path: "/dashboard",
-    element: <Dashboard />,
+    element: (
+      <PrivateRouter>
+        <Dashboard />
+      </PrivateRouter>
+    ),
     children: [
       {
         path: "/dashboard",
