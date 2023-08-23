@@ -17,7 +17,7 @@ const navOptions = [
     name: "Carts",
   },
   {
-    path: "/dashboard",
+    path: "/admin",
     name: "Dashboard",
   },
 ];

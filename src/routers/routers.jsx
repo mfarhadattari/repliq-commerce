@@ -5,6 +5,15 @@ import Main from "../layouts/Main";
 import LoginPage from "../pages/account/LoginPage";
 import ProfilePage from "../pages/account/ProfilePage";
 import RegisterPage from "../pages/account/RegisterPage";
+import AdminHome from "../pages/admin/AdminHome/AdminHomePage";
+import AddCustomerPage from "../pages/admin/Customers/AddCustomerPage";
+import CustomerDetailsPage from "../pages/admin/Customers/CustomerDetailsPage";
+import CustomersPage from "../pages/admin/Customers/CustomersPage";
+import AdminOrdersPage from "../pages/admin/Orders/AdminOrdersPage";
+import OrdersDetailsPage from "../pages/admin/Orders/OrdersDetailsPage";
+import AddProductPage from "../pages/admin/Products/AddProductPage";
+import AdminProductsPage from "../pages/admin/Products/AdminProductsPage";
+import UpdateProductPage from "../pages/admin/Products/UpdateProductPage";
 import HomePage from "../pages/public/Home/HomePage";
 import ProductDetailsPage from "../pages/public/ProductDetails/ProductDetailsPage";
 import ProductsPage from "../pages/public/Products/ProductsPage";
@@ -76,7 +85,7 @@ const routers = createBrowserRouter([
       },
     ],
   },
-  //----------   Dashboard Route ------------
+  //----------   Admin Route ------------
   {
     path: "/admin",
     element: (
@@ -87,7 +96,39 @@ const routers = createBrowserRouter([
     children: [
       {
         path: "/admin",
-        element: <h1>Admin Home</h1>,
+        element: <AdminHome />,
+      },
+      {
+        path: "customers",
+        element: <CustomersPage />,
+      },
+      {
+        path: "add-customer",
+        element: <AddCustomerPage />,
+      },
+      {
+        path: "customers/:id",
+        element: <CustomerDetailsPage />,
+      },
+      {
+        path: "products",
+        element: <AdminProductsPage />,
+      },
+      {
+        path: "add-product",
+        element: <AddProductPage />,
+      },
+      {
+        path: "products/:id",
+        element: <UpdateProductPage />,
+      },
+      {
+        path: "orders",
+        element: <AdminOrdersPage />,
+      },
+      {
+        path: "orders/:id",
+        element: <OrdersDetailsPage />,
       },
     ],
   },
