@@ -4,7 +4,7 @@ import useServer from "./useServer";
 const useFetchData = (path, initial, queryKey) => {
   const { serverReq } = useServer();
   const { data = initial, isLoading } = useQuery({
-    queryKey: queryKey ? [...queryKey] : [],
+    queryKey: queryKey ? [serverReq, ...queryKey] : [serverReq],
     queryFn: async () => {
       const res = await serverReq.get(path);
       return await res.data;
