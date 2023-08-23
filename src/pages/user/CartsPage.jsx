@@ -72,12 +72,13 @@ const CartsPage = () => {
                           </p>
                         </div>
                       </td>
-
+                      {/* -------------- PRODUCT QUANTITY ---------- */}
                       <td>
                         <div className="text-xl border rounded-full h-10 w-10 flex justify-center items-center">
                           <p className="text-center">{item.quantity}</p>
                         </div>
                       </td>
+                      {/* ------------- PRODUCT DELETE ACTION ------ */}
                       <th>
                         <button
                           className="btn btn-circle"
@@ -92,12 +93,14 @@ const CartsPage = () => {
               </table>
             </div>
 
+            {/* ---------------------- Navigate Checkout -------------- */}
             <div className="flex justify-end mt-5">
-              <Link to="/checkout" className="btn btn-outline w-[200px] ">
+              <Link to="/checkout" className="btn btn-outline w-[200px]">
                 Checkout
               </Link>
             </div>
           </section>
+          {/* ----------------- CART NOT FOUND ------------ */}
           <section
             className={
               carts.length > 0
