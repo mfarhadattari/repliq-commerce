@@ -1,13 +1,28 @@
 import { FaEdit, FaEye, FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import comingSoon from "../../../components/Message/comingSoon";
+import successAlert from "../../../components/Message/successAlert";
 import Loaders from "../../../components/common/Loaders";
 import PageTitle from "../../../components/common/PageTitle";
 import useFetchData from "../../../hooks/useFetchData";
+import useServer from "../../../hooks/useServer";
 
 const AdminProductsPage = () => {
-  const { data: products, isLoading: isProductLoading } =
-    useFetchData("/admin/products");
+  const { serverReq } = useServer();
+  const {
+    data: products,
+    isLoading: isProductLoading,
+    refetch: productRefetch,
+  } = useFetchData("/admin/products");
+
+  // delete product
+  const deleteProduct = (id) => {
+    serverReq.delete(`/admin/delete-product/${id}`).then((res) => {
+      if (res.data.deletedCount > 0) {
+        successAlert("Deleted Successfully");
+        productRefetch();
+      }
+    });
+  };
 
   return (
     <main>
@@ -61,7 +76,7 @@ const AdminProductsPage = () => {
                         </Link>
                         <button
                           className="btn btn-circle btn-error text-white text-xl"
-                          onClick={comingSoon}
+                          onClick={() => deleteProduct(product._id)}
                         >
                           <FaTrashAlt />
                         </button>
