@@ -26,7 +26,7 @@ const NavigationBar = () => {
   const { authUser, logout } = useAuth();
 
   return (
-    <nav className="navbar p-5 md:px-20 bg-slate-950 text-white items-center sticky top-0 z-50">
+    <nav className="navbar p-5 md:px-20 bg-slate-950 text-white items-center sticky top-0 z-40">
       <div className="navbar-start">
         {/* --------- Mobile and Tab Navigation  --------------*/}
         <div className="dropdown">

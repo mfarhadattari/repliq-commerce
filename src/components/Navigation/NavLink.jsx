@@ -4,8 +4,11 @@ const NavLink = ({ to, children }) => {
   const isActive = useLocation().pathname == to;
 
   return (
-    <li className="text-lg list-none">
-      <Link to={to} className={isActive ? "text-blue-700" : ""}>
+    <li className="text-lg list-none font-medium">
+      <Link
+        to={to}
+        className={isActive ? "border-b-4 border-blue-600 rounded-none" : ""}
+      >
         {children}
       </Link>
     </li>
