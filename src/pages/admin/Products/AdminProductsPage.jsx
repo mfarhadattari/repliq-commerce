@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import successAlert from "../../../components/Message/successAlert";
 import Loaders from "../../../components/common/Loaders";
 import PageTitle from "../../../components/common/PageTitle";
+import SectionTitle from "../../../components/common/SectionTitle";
 import useFetchData from "../../../hooks/useFetchData";
 import useServer from "../../../hooks/useServer";
 
@@ -28,6 +29,7 @@ const AdminProductsPage = () => {
     <main>
       <PageTitle title="Products" />
       <section className="my-10  mx-auto">
+        <SectionTitle heading="Our Products" />
         {isProductLoading || !products ? (
           <Loaders />
         ) : (
