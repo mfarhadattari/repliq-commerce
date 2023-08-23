@@ -71,9 +71,13 @@ const NavigationBar = () => {
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
-                <span className="text-4xl flex justify-center items-center w-full h-full">
-                  <FaUserCircle></FaUserCircle>
-                </span>
+                {authUser?.avatar ? (
+                  <img src={authUser?.avatar} />
+                ) : (
+                  <span className="text-4xl flex justify-center items-center w-full h-full">
+                    <FaUserCircle></FaUserCircle>
+                  </span>
+                )}
               </div>
             </label>
             <ul

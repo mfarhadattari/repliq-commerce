@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
-import comingSoon from "../../../components/Message/comingSoon";
 import Loaders from "../../../components/common/Loaders";
 import PageTitle from "../../../components/common/PageTitle";
+import useAddToCart from "../../../hooks/useAddToCart";
 import useFetchData from "../../../hooks/useFetchData";
 
 const ProductDetailsPage = () => {
@@ -11,6 +11,8 @@ const ProductDetailsPage = () => {
     {},
     [id]
   );
+
+  const { addToCart } = useAddToCart();
 
   return (
     <main className="my-20">
@@ -37,7 +39,7 @@ const ProductDetailsPage = () => {
               </div>
               <div className="text-lg">{product?.description}</div>
               <button
-                onClick={comingSoon}
+                onClick={() => addToCart(product)}
                 className="btn btn-outline w-[200px]"
               >
                 Add to Cart

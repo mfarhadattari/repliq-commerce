@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
-import comingSoon from "../Message/comingSoon";
+import useAddToCart from "../../hooks/useAddToCart";
 
 const ProductCard = ({ productInfo }) => {
   const { _id, image, name, price } = productInfo;
+  const { addToCart } = useAddToCart();
   return (
     <div
       data-aos="flip-right"
@@ -23,7 +24,10 @@ const ProductCard = ({ productInfo }) => {
           <p className="text-xl font-semibold">$ {price}</p>
         </div>
       </Link>
-      <button className="btn btn-outline w-full mt-2" onClick={comingSoon}>
+      <button
+        className="btn btn-outline w-full mt-2"
+        onClick={() => addToCart(productInfo)}
+      >
         Add To Cart
       </button>
     </div>
