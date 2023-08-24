@@ -1,16 +1,33 @@
 import { Link } from "react-router-dom";
+import successAlert from "../../../components/Message/successAlert";
 import Loaders from "../../../components/common/Loaders";
 import PageTitle from "../../../components/common/PageTitle";
 import SectionTitle from "../../../components/common/SectionTitle";
 import useFetchData from "../../../hooks/useFetchData";
+import useServer from "../../../hooks/useServer";
 import formatDateTime from "../../../utils/formatDateTime";
 
 const AdminOrdersPage = () => {
-  const { data: orders, isLoading: isOrderLoading } = useFetchData(
-    "/admin/orders",
-    [],
-    ["orders"]
-  );
+  const { serverReq } = useServer();
+  const {
+    data: orders,
+    isLoading: isOrderLoading,
+    refetch: orderRefetch,
+  } = useFetchData("/admin/orders", [], ["orders"]);
+
+  // order approve handler
+  const handleApprove = (id) => {
+    serverReq
+      .patch(`admin/update-status/${id}`, {
+        status: "approve",
+      })
+      .then(({ data }) => {
+        if (data.modifiedCount > 0) {
+          successAlert("Approve Successfully!");
+          orderRefetch();
+        }
+      });
+  };
 
   return (
     <main>
@@ -69,7 +86,10 @@ const AdminOrdersPage = () => {
                           {order.status}
                         </p>
                         {order.status.toLowerCase() == "paid" && (
-                          <button className="btn btn-sm rounded-none btn-success w-full text-white">
+                          <button
+                            onClick={() => handleApprove(order._id)}
+                            className="btn btn-sm rounded-none btn-success w-full text-white"
+                          >
                             Approve
                           </button>
                         )}
