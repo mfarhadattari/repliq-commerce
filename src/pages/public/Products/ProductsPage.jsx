@@ -8,7 +8,8 @@ import useFetchData from "../../../hooks/useFetchData";
 const ProductsPage = () => {
   const { data: products, isLoading: isProductLoading } = useFetchData(
     "/products",
-    []
+    [],
+    ["products"]
   );
   return (
     <div>

@@ -13,7 +13,7 @@ const AdminProductsPage = () => {
     data: products,
     isLoading: isProductLoading,
     refetch: productRefetch,
-  } = useFetchData("/admin/products");
+  } = useFetchData("/admin/products", [], ["products"]);
 
   // delete product
   const deleteProduct = (id) => {

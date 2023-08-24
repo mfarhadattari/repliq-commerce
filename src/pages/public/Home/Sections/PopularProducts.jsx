@@ -8,7 +8,8 @@ const PopularProducts = () => {
   // load data
   const { data: products, isLoading: isProductLoading } = useFetchData(
     "/popular-products",
-    []
+    [],
+    ["products"]
   );
 
   return (
