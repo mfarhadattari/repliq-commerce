@@ -19,8 +19,9 @@ const AddCustomerPage = () => {
     const customerInfo = {
       userName: data.name,
       userPhone: `+880${data.phoneNumber}`,
-      avatar: data.avatar,
+      avatar: data.photoURL,
     };
+
     serverReq.post("/admin/add-customer", customerInfo).then(({ data }) => {
       if (data.insertedId) {
         successAlert("Customer Added!");
