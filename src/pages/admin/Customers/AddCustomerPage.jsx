@@ -1,17 +1,37 @@
 import { useForm } from "react-hook-form";
 import ErrorMessage from "../../../components/Message/ErrorMessage";
+import errorAlert from "../../../components/Message/errorAlert";
+import successAlert from "../../../components/Message/successAlert";
 import PageTitle from "../../../components/common/PageTitle";
 import SectionTitle from "../../../components/common/SectionTitle";
+import useServer from "../../../hooks/useServer";
 
 const AddCustomerPage = () => {
+  const { serverReq } = useServer();
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
   const handleAddCustomer = (data) => {
-    console.log(data);
+    const customerInfo = {
+      userName: data.name,
+      userPhone: `+880${data.phoneNumber}`,
+      avatar: data.avatar,
+    };
+    serverReq.post("/admin/add-customer", customerInfo).then(({ data }) => {
+      if (data.insertedId) {
+        successAlert("Customer Added!");
+        reset();
+        return;
+      }
+      if (data.alreadyExist) {
+        errorAlert("This number is already used!");
+        return;
+      }
+    });
   };
 
   return (
@@ -75,10 +95,7 @@ const AddCustomerPage = () => {
               )}
             </div>
             <div className="form-control mt-6">
-              <button
-                type="submit"
-                className="btn btn-success text-white rounded-none"
-              >
+              <button type="submit" className="btn btn-outline ">
                 Add Customer
               </button>
             </div>
