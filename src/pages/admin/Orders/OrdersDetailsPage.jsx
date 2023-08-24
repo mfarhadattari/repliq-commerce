@@ -1,15 +1,20 @@
 import { useParams } from "react-router-dom";
+import successAlert from "../../../components/Message/successAlert";
 import Loaders from "../../../components/common/Loaders";
 import PageTitle from "../../../components/common/PageTitle";
 import SectionTitle from "../../../components/common/SectionTitle";
 import useFetchData from "../../../hooks/useFetchData";
+import useServer from "../../../hooks/useServer";
 import formatDateTime from "../../../utils/formatDateTime";
 
 const OrdersDetailsPage = () => {
   const { id } = useParams();
-  const { data: order, isLoading } = useFetchData(`admin/orders/${id}`, {}, [
-    id,
-  ]);
+  const { serverReq } = useServer();
+  const {
+    data: order,
+    isLoading,
+    refetch,
+  } = useFetchData(`admin/orders/${id}`, {}, [id]);
 
   const {
     _id,
@@ -23,8 +28,22 @@ const OrdersDetailsPage = () => {
     city,
   } = order;
 
+  // order approve handler
+  const handleApprove = (id) => {
+    serverReq
+      .patch(`admin/update-status/${id}`, {
+        status: "approve",
+      })
+      .then(({ data }) => {
+        if (data.modifiedCount > 0) {
+          successAlert("Approve Successfully!");
+          refetch();
+        }
+      });
+  };
+
   return (
-    <main>
+    <main className="my-5 p-5 lg:p-0">
       <PageTitle title="Order Details" />
       <section>
         <SectionTitle heading="Order Details" />
@@ -84,7 +103,12 @@ const OrdersDetailsPage = () => {
                 </table>
               </div>
               {status.toLowerCase() == "paid" && (
-                <button className="btn btn-outline w-full my-5">Approve</button>
+                <button
+                  onClick={() => handleApprove(_id)}
+                  className="btn btn-outline w-full my-5"
+                >
+                  Approve
+                </button>
               )}
             </section>
           </div>

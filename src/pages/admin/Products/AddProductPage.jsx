@@ -33,7 +33,7 @@ const AddProductPage = () => {
   };
 
   return (
-    <main>
+    <main className="my-5 p-5 lg:p-0">
       <PageTitle title="Add Product" />
       <section>
         <form onSubmit={handleSubmit(handelAddProduct)} className="space-y-2">

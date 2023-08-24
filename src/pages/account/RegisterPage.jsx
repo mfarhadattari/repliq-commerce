@@ -50,7 +50,7 @@ const RegisterPage = () => {
       <PageTitle title="Register" />
       <section>
         <SectionTitle heading="Crete new account!" />
-        <div className="p-5 w-full md:w-2/3 lg:w-1/2 mx-auto">
+        <div className="p-5 w-full md:w-3/4 lg:w-1/2 mx-auto">
           <form className="mt-5" onSubmit={handleSubmit(handelRegister)}>
             <div className="flex flex-col md:flex-row md:gap-5">
               {/* -------- Name ------------- */}

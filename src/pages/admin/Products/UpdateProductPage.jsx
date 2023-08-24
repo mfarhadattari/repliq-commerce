@@ -59,7 +59,7 @@ const UpdateProductPage = () => {
         ) : (
           <div className="my-10 p-5 md:p-10">
             <form onSubmit={handleSubmit(handelProductUpdate)}>
-              <div className="grid grid-col md:grid-cols-2 md:items-end lg:items-start lg:grid-cols-3 gap-5">
+              <div className="grid grid-col md:grid-cols-2 md:items-start lg:items-start lg:grid-cols-3 gap-5">
                 <div>
                   <div>
                     <label className="label">
@@ -86,7 +86,7 @@ const UpdateProductPage = () => {
                         <ErrorMessage message="Name is required" />
                       )}
                     </div>
-                    <div className="flex flex-col md:flex-row gap-5">
+                    <div className="flex flex-col lg:flex-row gap-5">
                       {/* ------------------ Product Category ---------------- */}
                       <div className="form-control w-full">
                         <label className="label">

@@ -30,7 +30,7 @@ const CartsPage = () => {
   };
 
   return (
-    <main className="my-10">
+    <main className="my-10 p-5 lg-p-0">
       <PageTitle title="Carts" />
       {isCartLoading || !carts ? (
         <Loaders />

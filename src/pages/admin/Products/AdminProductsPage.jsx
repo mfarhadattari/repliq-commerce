@@ -61,7 +61,7 @@ const AdminProductsPage = () => {
                       </div>
                     </td>
                     <th>
-                      <div className="flex items-center justify-center gap-2">
+                      <div className="flex flex-col md:flex-row items-center justify-center gap-2">
                         <Link
                           to={`/products/${product._id}`}
                           className="btn btn-circle btn-info text-white text-xl"

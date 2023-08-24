@@ -60,7 +60,7 @@ const CheckoutPage = () => {
   };
 
   return (
-    <main>
+    <main className="my-5 p-5 lg-p-0">
       <PageTitle title="Checkout" />
 
       {isCartLoading || !carts || carts?.length <= 0 ? (

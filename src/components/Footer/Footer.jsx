@@ -42,9 +42,9 @@ const Footer = () => {
             <img src="/icon.png" className="w-10 h-10" alt="" />
             <h1 className="text-2xl font-bold">Repliq Commerce</h1>
           </div>
-          <div>
+          <div className="text-start">
             <p className="flex gap-1 items-center">
-              <FaLocationDot /> Level-4, 34, Awal Centre, Banani, Dhaka
+              <FaLocationDot /> Level-4, 34, Banani, Dhaka
             </p>
             <p className="flex gap-1 items-center">
               <FaEnvelope /> info@repliq-commerce.com

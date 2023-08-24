@@ -16,7 +16,7 @@ const OrdersPage = () => {
   );
 
   return (
-    <main className="my-10">
+    <main className="my-5 p-5 lg-p-0">
       <PageTitle title="Orders" />
       <section>
         <SectionTitle heading="My Orders!" />
@@ -67,7 +67,7 @@ const OrdersPage = () => {
                       </td>
                       {/* -------------- PRODUCT QUANTITY ---------- */}
                       <td>
-                        <p>{item?.status}</p>
+                        <p className="uppercase">{item?.status}</p>
                       </td>
                     </tr>
                   ))}
