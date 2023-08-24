@@ -2,18 +2,23 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import ErrorMessage from "../../../components/Message/ErrorMessage";
+import successAlert from "../../../components/Message/successAlert";
 import Loaders from "../../../components/common/Loaders";
 import PageTitle from "../../../components/common/PageTitle";
 import SectionTitle from "../../../components/common/SectionTitle";
 import useFetchData from "../../../hooks/useFetchData";
+import useServer from "../../../hooks/useServer";
+import generateDateTime from "../../../utils/generateDateTime";
 
 const UpdateProductPage = () => {
+  const { serverReq } = useServer();
+
   const { id } = useParams();
-  const { data: product, isLoading: isProductLoading } = useFetchData(
-    `/products/${id}`,
-    {},
-    [id]
-  );
+  const {
+    data: product,
+    isLoading: isProductLoading,
+    refetch,
+  } = useFetchData(`/products/${id}`, {}, [id]);
 
   const [imageURL, setImageURL] = useState(null);
 
@@ -25,7 +30,23 @@ const UpdateProductPage = () => {
 
   // handler product update
   const handelProductUpdate = (data) => {
-    console.log(data);
+    const productInfo = {
+      name: data.name,
+      image: data.image,
+      category: data.category,
+      price: data.price,
+      description: data.description,
+      timeDate: generateDateTime(),
+    };
+
+    serverReq
+      .patch(`/admin/update-product/${product._id}`, productInfo)
+      .then(({ data }) => {
+        if (data.modifiedCount > 0) {
+          successAlert("Updated Successfully!");
+          refetch();
+        }
+      });
   };
 
   return (
