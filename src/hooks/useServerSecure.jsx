@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect } from "react";
 
 const secureReq = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "https://api-repliq-commerce.vercel.app",
 });
 
 const useServerSecure = () => {

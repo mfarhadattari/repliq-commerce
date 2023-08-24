@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const serverReq = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "https://api-repliq-commerce.vercel.app",
 });
 const useServer = () => {
   return { serverReq };

@@ -57,9 +57,7 @@ const AdminProductsPage = () => {
                     <td>
                       <div>
                         <h2 className="uppercase">{product.name}</h2>
-                        <p className="text-blue-500">
-                          Price: {product.price} &#2547;
-                        </p>
+                        <p className="text-blue-500">Price: {product.price}</p>
                       </div>
                     </td>
                     <th>

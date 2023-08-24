@@ -34,7 +34,7 @@ const UpdateProductPage = () => {
       name: data.name,
       image: data.image,
       category: data.category,
-      price: data.price,
+      price: parseInt(data.price),
       description: data.description,
       timeDate: generateDateTime(),
     };
@@ -159,9 +159,7 @@ const UpdateProductPage = () => {
               </div>
 
               <div className="form-control mt-6">
-                <button className="btn btn-success text-white rounded-none">
-                  Update
-                </button>
+                <button className="btn btn-outline">Update</button>
               </div>
             </form>
           </div>
