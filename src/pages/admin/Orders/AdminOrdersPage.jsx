@@ -76,7 +76,7 @@ const AdminOrdersPage = () => {
                     <td>
                       <div>
                         <p>TransID: {order.transactionID}</p>
-                        <p>Date: {formatDateTime(order.paymentTime).data}</p>
+                        <p>Date: {formatDateTime(order.paymentTime).date}</p>
                         <p>Time: {formatDateTime(order.paymentTime).time}</p>
                       </div>
                     </td>

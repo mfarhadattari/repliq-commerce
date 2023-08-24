@@ -44,7 +44,7 @@ const OrdersPage = () => {
                       <td>
                         <div>
                           <p>TransID: {item?.transactionID}</p>
-                          <p>Date: {formatDateTime(item?.paymentTime).data}</p>
+                          <p>Date: {formatDateTime(item?.paymentTime).date}</p>
                           <p>Time:{formatDateTime(item?.paymentTime).time}</p>
                         </div>
                       </td>
