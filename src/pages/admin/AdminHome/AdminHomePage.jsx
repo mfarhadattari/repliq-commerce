@@ -17,7 +17,6 @@ const AdminHomePage = () => {
     ["adminData"]
   );
 
-  console.log(adminData, isAdminDataLoading);
   return (
     <main>
       <PageTitle title="Admin Home" />
